@@ -1,16 +1,22 @@
 from flask import Flask, render_template, request
 import requests
 import smtplib
+import os
+
+
+port = int(os.environ.get('PORT', 5000))
+
+app.run(host='0.0.0.0', port=port)
 
 my_email = "vamsi.krishnathota8055@gmail.com"
 app = Flask(__name__)
 
-@app.route("conultancywebsite.herokuapp.com/")
+@app.route("/")
 def hello_world():
     return render_template('index.html')
 
 
-@app.route('conultancywebsite.herokuapp.com/contact', methods=["POST", "GET"])
+@app.route('/contact', methods=["POST", "GET"])
 def contact():
     if request.method == 'POST':
         with smtplib.SMTP("smtp.gmail.com", 587) as connection:
@@ -67,4 +73,4 @@ def contact():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=33507)
+    app.run(debug=True, host='0.0.0.0', port=port)
