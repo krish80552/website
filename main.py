@@ -5,12 +5,12 @@ import smtplib
 my_email = "vamsi.krishnathota8055@gmail.com"
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("conultancywebsite.herokuapp.com/")
 def hello_world():
     return render_template('index.html')
 
 
-@app.route('/contact', methods=["POST", "GET"])
+@app.route('conultancywebsite.herokuapp.com/contact', methods=["POST", "GET"])
 def contact():
     if request.method == 'POST':
         with smtplib.SMTP("smtp.gmail.com", 587) as connection:
